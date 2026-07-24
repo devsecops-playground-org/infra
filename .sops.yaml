@@ -1,0 +1,10 @@
+# Terraform variables that contain secrets are encrypted with age and committed.
+# The diff stays reviewable; the values stay unreadable without the key.
+#
+#   sops --encrypt --in-place projects/<project>/secrets.enc.tfvars.json
+#
+# The private half lives in the SOPS_AGE_KEY repository secret and nowhere else.
+creation_rules:
+  - path_regex: projects/.*/secrets\.enc\.tfvars\.json$
+    age: age1qqqqqplaceholderreplacewithyourrealagepublickeyqqqqqqqqqqqqqqqqqq
+    encrypted_regex: "^(.*)$"

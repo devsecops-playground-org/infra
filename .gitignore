@@ -1,0 +1,9 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+# Decrypted at plan time, never written back to git.
+secrets.auto.tfvars.json
+*.tfvars
+!*.tfvars.example
+.DS_Store

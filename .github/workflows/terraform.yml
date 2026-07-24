@@ -1,0 +1,25 @@
+# Infrastructure uses the same platform pipeline as every application repo.
+name: terraform
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  stacks:
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [arteamis, botanary, tasmil]
+    uses: devsecops-playground-org/platform/.github/workflows/terraform-apply.yml@v1
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    with:
+      working_directory: projects/${{ matrix.project }}
+      cloud: digitalocean
+      apply: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    secrets: inherit

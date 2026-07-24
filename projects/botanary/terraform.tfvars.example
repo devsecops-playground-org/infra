@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars (git-ignored) or supply these in CI.
+# The zone id is not a secret, but it is environment-specific.
+
+dns_zone_id       = "replace-with-the-botanary-cloudflare-zone-id"
+deploy_public_key = "ssh-ed25519 AAAA... ci-deploy@botanary"
+
+ssh_key_fingerprints = []
+ssh_allowed_cidrs    = ["0.0.0.0/0", "::/0"]
