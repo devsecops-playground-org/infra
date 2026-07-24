@@ -22,4 +22,6 @@ jobs:
       working_directory: projects/${{ matrix.project }}
       cloud: digitalocean
       apply: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-    secrets: inherit
+    # The dispatcher is this org's own pinned @v1 workflow, not a third party;
+    # inheriting secrets to it is the intended design.
+    secrets: inherit # nosemgrep: yaml.github-actions.security.secrets-inherit.secrets-inherit

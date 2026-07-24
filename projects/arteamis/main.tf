@@ -1,7 +1,7 @@
 # Arteamis: a Next.js frontend on Vercel and a FastAPI backend on its own VM.
 
 module "arteamis" {
-  source = "git::https://github.com/devsecops-playground-org/platform.git//modules/project?ref=v1"
+  source = "git::https://github.com/devsecops-playground-org/platform.git//modules/project?ref=v1.0.0"
 
   project      = "arteamis"
   environments = ["staging", "production"]

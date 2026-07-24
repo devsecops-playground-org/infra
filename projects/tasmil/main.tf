@@ -3,7 +3,7 @@
 # the agent runner never restarts the API.
 
 module "tasmil" {
-  source = "git::https://github.com/devsecops-playground-org/platform.git//modules/project?ref=v1"
+  source = "git::https://github.com/devsecops-playground-org/platform.git//modules/project?ref=v1.0.0"
 
   project      = "tasmil"
   environments = ["staging", "production"]

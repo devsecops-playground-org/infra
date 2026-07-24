@@ -2,7 +2,7 @@
 # The contracts repository has no infrastructure — it deploys to a chain, by hand.
 
 module "botanary" {
-  source = "git::https://github.com/devsecops-playground-org/platform.git//modules/project?ref=v1"
+  source = "git::https://github.com/devsecops-playground-org/platform.git//modules/project?ref=v1.0.0"
 
   project      = "botanary"
   environments = ["staging", "production"]
