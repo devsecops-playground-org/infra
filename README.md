@@ -8,8 +8,8 @@ the module holds the logic, this repo holds the declarations.
 
 ```
 projects/
-  arteamis/    frontend on Vercel + one API VM per environment
-  botanary/    frontend on Vercel + one API VM per environment
+  arteamis/    frontend on Vercel + one EC2 VM per environment
+  botanary/    frontend on Vercel + one EC2 VM per environment
   tasmil/      frontend on Vercel + one shared VM running backend, mcp and ai
 ```
 
@@ -23,8 +23,9 @@ Nothing is applied from a laptop.
 
 ## Secrets
 
-Cloud access is keyless via OIDC wherever the provider supports it. DigitalOcean
-does not, so its token is an environment secret and is rotated on a schedule.
+Cloud access is keyless: the pipeline assumes an IAM role via a short-lived
+GitHub OIDC token. There is no stored AWS key. Run `bootstrap/aws-oidc` once to
+create the provider and role, then set the `AWS_ROLE_ARN` variable.
 
 Terraform variables that contain secrets are encrypted with SOPS + age and
 committed as `secrets.enc.tfvars.json`. The private key lives only in the
@@ -32,7 +33,7 @@ committed as `secrets.enc.tfvars.json`. The private key lives only in the
 
 | secret / variable | kind | purpose |
 |---|---|---|
-| `DIGITALOCEAN_ACCESS_TOKEN` | secret | droplets and firewalls |
+| `AWS_ROLE_ARN` | variable | keyless role the pipeline assumes (from bootstrap) |
 | `CLOUDFLARE_API_TOKEN` | secret | DNS records |
 | `SOPS_AGE_KEY` | secret | decrypting the tfvars above |
 | `AWS_ROLE_ARN` | variable | OIDC role, when a stack uses AWS |

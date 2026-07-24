@@ -1,4 +1,6 @@
 # Infrastructure uses the same platform pipeline as every application repo.
+# Cloud access is keyless: the plan/apply jobs assume the AWS_ROLE_ARN role via a
+# short-lived GitHub OIDC token — no AWS key is stored.
 name: terraform
 
 on:
@@ -20,7 +22,7 @@ jobs:
       pull-requests: write
     with:
       working_directory: projects/${{ matrix.project }}
-      cloud: digitalocean
+      cloud: aws
       apply: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     # The dispatcher is this org's own pinned @v1 workflow, not a third party;
     # inheriting secrets to it is the intended design.

@@ -15,12 +15,10 @@ module "tasmil" {
   vercel_domains = ["tasmil.dev", "www.tasmil.dev", "staging.tasmil.dev"]
 
   vm = {
-    region       = "sgp1"
-    size         = "s-4vcpu-8gb" # three services on one box
-    staging_size = "s-2vcpu-4gb"
+    size         = "t3.medium"
+    staging_size = "t3.small"
   }
 
-  deploy_public_key    = var.deploy_public_key
-  ssh_key_fingerprints = var.ssh_key_fingerprints
-  ssh_allowed_cidrs    = var.ssh_allowed_cidrs
+  deploy_public_key = var.deploy_public_key
+  ssh_allowed_cidrs = var.ssh_allowed_cidrs
 }

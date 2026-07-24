@@ -4,5 +4,4 @@
 dns_zone_id       = "replace-with-the-botanary-cloudflare-zone-id"
 deploy_public_key = "ssh-ed25519 AAAA... ci-deploy@botanary"
 
-ssh_key_fingerprints = []
-ssh_allowed_cidrs    = ["0.0.0.0/0", "::/0"]
+ssh_allowed_cidrs    = ["0.0.0.0/0"]
