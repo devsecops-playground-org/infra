@@ -33,7 +33,7 @@ variable "gcp_project_id" {
 }
 
 module "oidc" {
-  source = "git::https://github.com/devsecops-playground-org/platform.git//modules/gcp-oidc?ref=v1.0.0"
+  source = "git::https://github.com/devsecops-playground-org/platform.git//modules/gcp-oidc?ref=v1"
 
   gcp_project_id = var.gcp_project_id
   org            = "devsecops-playground-org"
